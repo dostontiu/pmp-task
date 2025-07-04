@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Enum;
+use App\Enums\TaskStatus;
 
 class TaskRequest extends FormRequest
 {
@@ -26,7 +28,7 @@ class TaskRequest extends FormRequest
             'project_id' => 'required|exists:projects,id',
             'name' => 'required|min:5|max:80',
             'description' => 'required|min:5|max:500',
-            'status' => 'required|int',
+            'status' => ['required', new Enum(TaskStatus::class)],
         ];
     }
 

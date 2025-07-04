@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('project_id')->nullable()->references('id')->on('projects');
             $table->string('name')->nullable();
             $table->text('description')->nullable();
-            $table->string('status')->nullable();
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

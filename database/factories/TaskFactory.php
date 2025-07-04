@@ -24,7 +24,7 @@ class TaskFactory extends Factory
             'project_id' => fake()->randomElement(Project::get()->pluck('id')->toArray()),
             'name' => fake()->name(),
             'description' => fake()->text(),
-            'status' => fake()->randomNumber(),
+            'status' => fake()->randomElement(\App\Enums\TaskStatus::class)->value,
         ];
     }
 }
