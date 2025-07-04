@@ -44,7 +44,7 @@
                             </tbody>
                         </table>
                         <div class="d-flex justify-content-between">
-                            {{ $projects->appends(request()->query())->links() }}
+                            {{ $projects->appends(request()->query())->links('vendor.pagination.bootstrap-4') }}
                         </div>
                     </div>
                 </div>
