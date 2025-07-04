@@ -17,7 +17,6 @@ class ProjectFactory extends Factory
      */
     public function definition(): array
     {
-//        dd(fake()->randomElement(User::get()->pluck('id')->toArray()));
         return [
             'name' => fake()->name(),
             'description' => fake()->text(),
