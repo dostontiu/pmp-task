@@ -12,4 +12,8 @@ Route::post('logout', [\App\Http\Controllers\AuthController::class, 'logout'])->
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('project', \App\Http\Controllers\ProjectController::class);
+
+    Route::post('task/{task}/store', [\App\Http\Controllers\TaskController::class, 'store'])->name('task.store');
+    Route::post('task/{task}/update', [\App\Http\Controllers\TaskController::class, 'update'])->name('task.update');
+    Route::post('task/{task}/destroy', [\App\Http\Controllers\TaskController::class, 'destroy'])->name('task.destroy');
 });
