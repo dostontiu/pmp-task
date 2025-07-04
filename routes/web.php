@@ -9,3 +9,7 @@ Route::get('/', function () {
 Route::get('login', [\App\Http\Controllers\AuthController::class, 'loginForm'])->name('login');
 Route::post('login', [\App\Http\Controllers\AuthController::class, 'login'])->name('login.store');
 Route::post('logout', [\App\Http\Controllers\AuthController::class, 'logout'])->name('logout')->middleware('auth');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('project', [\App\Http\Controllers\ProjectController::class, 'index'])->name('project.index');
+});
