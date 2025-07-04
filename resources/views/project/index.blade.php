@@ -35,6 +35,7 @@
                                             <button class="btn btn-primary btn-sm edit-btn" type="button" data-id="{{ $project->id }}">Edit</button>
                                             <form action="{{ route('project.destroy', $project->id) }}" method="POST" onsubmit="return confirm('Do you really want to submit the form?');">
                                                 @csrf
+                                                @method('delete')
                                                 <button class="btn btn-danger btn-sm delete-btn" type="submit" data-id="{{ $project->id }}">Delete</button>
                                             </form>
                                         </div>
@@ -95,6 +96,7 @@
                 <div class="modal-body">
                     <form action="#" method="post" class="edit-modal-form">
                         @csrf
+                        @method('put')
                         <div class="row">
                             <div class="form-group col-md-12">
                                 <label>Name</label>
