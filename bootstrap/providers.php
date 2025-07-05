@@ -2,4 +2,5 @@
 
 return [
     App\Providers\AppServiceProvider::class,
+    Modules\Project\Providers\ProjectServiceProvider::class,
 ];

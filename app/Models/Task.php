@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\TaskStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Project\Models\Project;
 
 class Task extends Model
 {

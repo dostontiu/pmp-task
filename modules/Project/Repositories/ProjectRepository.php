@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Repositories;
+namespace Modules\Project\Repositories;
 
-use App\Interfaces\ProjectRepositoryInterface;
-use App\Models\Project;
+use Modules\Project\Interfaces\ProjectRepositoryInterface;
+use Modules\Project\Models\Project;
 
 class ProjectRepository implements ProjectRepositoryInterface
 {

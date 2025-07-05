@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Interfaces;
+namespace Modules\Project\Interfaces;
 
-use App\Models\Project;
+use Modules\Project\Models\Project;
 
 interface ProjectRepositoryInterface
 {
