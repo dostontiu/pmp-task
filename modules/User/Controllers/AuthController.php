@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Modules\User\Controllers;
 
-use App\Http\Requests\LoginRequest;
-use App\Models\User;
+use Modules\User\Requests\LoginRequest;
+use Modules\User\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -11,7 +11,7 @@ class AuthController extends Controller
 {
     public function loginForm()
     {
-        return view('auth.login');
+        return view('user::login');
     }
 
     public function login(LoginRequest $request)

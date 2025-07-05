@@ -2,7 +2,7 @@
 
 namespace Modules\Project\Models;
 
-use App\Models\User;
+use Modules\User\Models\User;
 use Database\Factories\ProjectFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
