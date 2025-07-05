@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace Modules\Task\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Enum;
-use App\Enums\TaskStatus;
+use Modules\Task\Enums\TaskStatus;
 
 class TaskRequest extends FormRequest
 {

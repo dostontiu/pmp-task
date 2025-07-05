@@ -3,11 +3,11 @@
 namespace Database\Factories;
 
 use App\Models\User;
-use Modules\Project\Models\Project;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Modules\Project\Models\Project;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Task>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Modules\Task\Models\Task>
  */
 class TaskFactory extends Factory
 {
@@ -24,7 +24,7 @@ class TaskFactory extends Factory
             'project_id' => fake()->randomElement(Project::get()->pluck('id')->toArray()),
             'name' => fake()->name(),
             'description' => fake()->text(),
-            'status' => fake()->randomElement(\App\Enums\TaskStatus::class)->value,
+            'status' => fake()->randomElement(\Modules\Task\Enums\TaskStatus::class)->value,
         ];
     }
 }

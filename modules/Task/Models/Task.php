@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace Modules\Task\Models;
 
-use App\Enums\TaskStatus;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Project\Models\Project;
+use Modules\Task\Enums\TaskStatus;
 
 class Task extends Model
 {

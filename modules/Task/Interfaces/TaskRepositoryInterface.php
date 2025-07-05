@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Interfaces;
+namespace Modules\Task\Interfaces;
 
-use App\Models\Task;
+use Modules\Task\Models\Task;
 
 interface TaskRepositoryInterface
 {

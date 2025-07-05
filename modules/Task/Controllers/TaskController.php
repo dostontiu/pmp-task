@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Modules\Task\Controllers;
 
-use App\Http\Requests\TaskRequest;
-use App\Interfaces\TaskRepositoryInterface;
-use App\Models\Task;
+use Modules\Task\Interfaces\TaskRepositoryInterface;
+use Modules\Task\Requests\TaskRequest;
 
 class TaskController extends Controller
 {

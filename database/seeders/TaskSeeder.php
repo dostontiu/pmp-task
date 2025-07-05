@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\Task;
 use Illuminate\Database\Seeder;
+use Modules\Task\Models\Task;
 
 class TaskSeeder extends Seeder
 {
