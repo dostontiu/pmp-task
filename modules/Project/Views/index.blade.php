@@ -123,13 +123,13 @@
 
 @push('pageScript')
     <script>
-        $('document').ready(function() {
-            $('.edit-btn').on('click',function (){
+        $('document').ready(function () {
+            $('.edit-btn').on('click', function () {
                 let id = $(this).data('id')
                 $.ajax({
                     method: 'GET',
                     url: `{{ url(route('project.edit', ":id" )) }}`.replace(':id', id),
-                    success:function(data){
+                    success: function (data) {
                         let action = `{{ url(route('project.update', ":id" )) }}`.replace(':id', id);
                         $('#editModal').modal('show')
                         $(".edit-modal-form input[name='name']").val(data.name)
