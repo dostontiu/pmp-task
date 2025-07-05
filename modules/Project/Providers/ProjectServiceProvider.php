@@ -21,7 +21,7 @@ class ProjectServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/../Views', 'project');
 
         // Merge configuration files
-//        $this->mergeConfigFrom(__DIR__ . '/../Config/config.php', 'project');
+        $this->mergeConfigFrom(__DIR__ . '/../Config/config.php', 'project');
     }
 
     /**
