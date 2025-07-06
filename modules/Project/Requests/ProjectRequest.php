@@ -24,6 +24,7 @@ class ProjectRequest extends FormRequest
         return [
             'name' => 'required|min:5|max:80',
             'description' => 'required|min:5|max:500',
+            'user_id' => 'required',
         ];
     }
 

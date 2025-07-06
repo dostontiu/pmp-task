@@ -33,6 +33,6 @@ class ProjectRepository implements ProjectRepositoryInterface
 
     public function find(int $id): ?Project
     {
-        return Project::find($id);
+        return Project::findOrFail($id);
     }
 }
