@@ -3,6 +3,9 @@
 namespace Modules\Task\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Gate;
+use Modules\Task\Policies\TaskPolicy;
+use Modules\Task\Models\Task;
 
 class TaskServiceProvider extends ServiceProvider
 {
@@ -18,6 +21,8 @@ class TaskServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/../Views', 'task');
 
         $this->mergeConfigFrom(__DIR__ . '/../Config/config.php', 'task');
+
+        Gate::policy(Task::class, TaskPolicy::class);
     }
 
     /**

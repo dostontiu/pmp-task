@@ -2,6 +2,9 @@
 
 namespace Modules\Task\Controllers;
 
+use Illuminate\Support\Facades\Gate;
+use Modules\Task\Enums\TaskStatus;
+use Modules\Task\Models\Task;
 use Modules\Task\Interfaces\TaskRepositoryInterface;
 use Modules\Task\Requests\TaskRequest;
 use Modules\Task\Requests\TaskUpdateRequest;
@@ -24,9 +27,18 @@ class TaskController extends Controller
         return redirect()->back()->with('success', 'Task added successfully');
     }
 
-    public function status(TaskUpdateRequest $request, int $id)
+    public function status(TaskUpdateRequest $request, Task $task)
     {
-        $this->repository->status($request->validated(), $id);
+        if ($request->status == TaskStatus::ASSIGNED->value) {
+            if (!Gate::allows('acceptTask', $task)) {
+                return redirect()->back()->with('error', 'You don\'t have permission acceptTask');
+            }
+        } elseif ($request->status == TaskStatus::ACCEPTED->value) {
+            if (!Gate::allows('acceptTask', $task)) {
+                return redirect()->back()->with('error', 'You don\'t have permission doneTask');
+            }
+        }
+        $this->repository->status($request->validated(), $task->id);
 
         return redirect()->back()->with('success', 'Task status updated successfully');
     }

@@ -26,13 +26,13 @@
                                     <h4 class="text-primary">{{ $task->assignedUser?->name }}</h4>
                                 </div>
                                 <div class="col-2">
-                                    @if($task->status == \Modules\Task\Enums\TaskStatus::ASSIGNED)
+                                    @if($task->status == \Modules\Task\Enums\TaskStatus::ASSIGNED && Gate::allows('acceptTask', $task))
                                         <form action="{{ route('task.status', $task->id) }}" method="POST">
                                             @csrf
                                             <input type="hidden" name="status" value="{{ \Modules\Task\Enums\TaskStatus::ACCEPTED }}">
                                             <button type="submit" class="btn btn-primary">Accept</button>
                                         </form>
-                                    @elseif($task->status == \Modules\Task\Enums\TaskStatus::ACCEPTED)
+                                    @elseif($task->status == \Modules\Task\Enums\TaskStatus::ACCEPTED && Gate::allows('doneTask', $task))
                                         <form action="{{ route('task.status', $task->id) }}" method="POST">
                                             @csrf
                                             <input type="hidden" name="status" value="{{ \Modules\Task\Enums\TaskStatus::DONE }}">
