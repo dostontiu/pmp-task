@@ -27,13 +27,13 @@
                                 </div>
                                 <div class="col-2">
                                     @if($task->status == \Modules\Task\Enums\TaskStatus::ASSIGNED)
-                                        <form action="{{ route('task.update', $task->id) }}" method="POST">
+                                        <form action="{{ route('task.status', $task->id) }}" method="POST">
                                             @csrf
                                             <input type="hidden" name="status" value="{{ \Modules\Task\Enums\TaskStatus::ACCEPTED }}">
                                             <button type="submit" class="btn btn-primary">Accept</button>
                                         </form>
                                     @elseif($task->status == \Modules\Task\Enums\TaskStatus::ACCEPTED)
-                                        <form action="{{ route('task.update', $task->id) }}" method="POST">
+                                        <form action="{{ route('task.status', $task->id) }}" method="POST">
                                             @csrf
                                             <input type="hidden" name="status" value="{{ \Modules\Task\Enums\TaskStatus::DONE }}">
                                             <button type="submit" class="btn btn-warning">Done</button>

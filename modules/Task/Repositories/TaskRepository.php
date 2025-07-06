@@ -12,22 +12,10 @@ class TaskRepository implements TaskRepositoryInterface
         return Task::create($data);
     }
 
-    public function update(array $data, int $id): int
+    public function status(array $data, int $id): int
     {
         $model = Task::findOrFail($id);
 
         return $model->update($data);
-    }
-
-    public function delete(int $id): bool
-    {
-        $model = Task::findOrFail($id);
-
-        return $model->delete();
-    }
-
-    public function find(int $id): ?Task
-    {
-        return Task::find($id);
     }
 }

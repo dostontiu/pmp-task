@@ -15,23 +15,15 @@ class TaskController extends Controller
 
     public function assign(TaskRequest $request)
     {
-        $model = $this->repository->create($request->validated());
+        $this->repository->create($request->validated());
 
         return redirect()->back()->with('success', 'Task added successfully');
     }
 
-    public function update(TaskUpdateRequest $request, int $id)
+    public function status(TaskUpdateRequest $request, int $id)
     {
-        $model = $this->repository->update($request->validated(), $id);
+        $this->repository->status($request->validated(), $id);
 
-        return redirect()->back()->with('success', 'Task updated successfully');
+        return redirect()->back()->with('success', 'Task status updated successfully');
     }
-
-    public function destroy(int $id)
-    {
-        $this->repository->delete($id);
-
-        return redirect()->back()->with('success', 'Task deleted successfully');
-    }
-
 }
