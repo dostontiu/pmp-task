@@ -13,6 +13,7 @@ services:
         depends_on:
             - postgres
             - php
+            - redis
         networks:
             - pmp
 
@@ -41,5 +42,12 @@ services:
             - ./:/var/www/html
         ports:
             - "8081:8081"
+        networks:
+            - pmp
+    redis:
+        image: redis:alpine
+        container_name: redis
+        ports:
+            - "6379:6379"
         networks:
             - pmp

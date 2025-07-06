@@ -4,6 +4,9 @@ FROM php:8.2.0-fpm
 RUN apt-get update && apt-get install -y libbz2-dev libcurl4-openssl-dev libxml2-dev libzip-dev libgd-dev zlib1g-dev libicu-dev libpq-dev
 RUN docker-php-ext-install curl intl gd zip pdo pdo_pgsql
 
+# Install Redis PHP extension
+RUN pecl install redis && docker-php-ext-enable redis
+
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
