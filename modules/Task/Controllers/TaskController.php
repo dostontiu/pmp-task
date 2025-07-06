@@ -4,6 +4,7 @@ namespace Modules\Task\Controllers;
 
 use Modules\Task\Interfaces\TaskRepositoryInterface;
 use Modules\Task\Requests\TaskRequest;
+use Modules\Task\Requests\TaskUpdateRequest;
 
 class TaskController extends Controller
 {
@@ -12,21 +13,14 @@ class TaskController extends Controller
     )
     {}
 
-    public function view(int $id)
-    {
-        $model = $this->repository->find($id);
-
-        return view('task.view', compact('model'));
-    }
-
-    public function store(TaskRequest $request)
+    public function assign(TaskRequest $request)
     {
         $model = $this->repository->create($request->validated());
 
         return redirect()->back()->with('success', 'Task added successfully');
     }
 
-    public function update(TaskRequest $request, int $id)
+    public function update(TaskUpdateRequest $request, int $id)
     {
         $model = $this->repository->update($request->validated(), $id);
 

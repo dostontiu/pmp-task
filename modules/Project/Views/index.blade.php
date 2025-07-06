@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="">
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card">
@@ -32,7 +32,8 @@
                                     <td>{{ $project->created_at?->format('d.m.Y H:i:s') }}</td>
                                     <td>
                                         <div class="d-flex">
-                                            <button class="btn btn-primary btn-sm edit-btn" type="button" data-id="{{ $project->id }}">Edit</button>
+                                            <a href="{{ route('project.show', $project->id) }}" class="btn btn-primary btn-sm">View</a>
+                                            <button class="btn btn-warning btn-sm edit-btn" type="button" data-id="{{ $project->id }}">Edit</button>
                                             <form action="{{ route('project.destroy', $project->id) }}" method="POST" onsubmit="return confirm('Do you really want to submit the form?');">
                                                 @csrf
                                                 @method('delete')

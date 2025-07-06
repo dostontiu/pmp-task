@@ -23,29 +23,37 @@
                             <div class="row">
                                 <div class="col-10">
                                     <h5 class="card-title">{{ $task->description }}</h5>
+                                    <h4 class="text-primary">{{ $task->assignedUser?->name }}</h4>
                                 </div>
-                                <div class="col-1">
+                                <div class="col-2">
                                     @if($task->status == \Modules\Task\Enums\TaskStatus::ASSIGNED)
-                                        <a href="#" class="btn btn-primary">Accept</a>
+                                        <form action="{{ route('task.update', $task->id) }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="status" value="{{ \Modules\Task\Enums\TaskStatus::ACCEPTED }}">
+                                            <button type="submit" class="btn btn-primary">Accept</button>
+                                        </form>
                                     @elseif($task->status == \Modules\Task\Enums\TaskStatus::ACCEPTED)
-                                        <a href="#" class="btn btn-warning">Done</a>
-                                    @elseif($task->status == \Modules\Task\Enums\TaskStatus::DONE)
-                                        <a href="#" class="btn btn-success">Done!</a>
+                                        <form action="{{ route('task.update', $task->id) }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="status" value="{{ \Modules\Task\Enums\TaskStatus::DONE }}">
+                                            <button type="submit" class="btn btn-warning">Done</button>
+                                        </form>
                                     @elseif($task->status == \Modules\Task\Enums\TaskStatus::REJECTED)
                                         <a href="#" class="btn btn-danger">Rejected</a>
                                     @endif
                                 </div>
-                                <div class="col-1">
-                                    <button class="btn btn-warning">{{ $task->status?->name }}</button>
-                                </div>
-                                <div class="col-12">
-                                    <h4 class="text-primary">{{ $task->assignedUser?->name }}</h4>
-                                </div>
                             </div>
                         </div>
                         <div class="card-footer text-muted">
-                            {{ $task->user?->name }} |
-                            {{ $task->created_at?->format('d.m.Y H:i:s') }}
+                            <div class="row">
+                                <div class="col-10">
+                                    {{ $task->user?->name }} |
+                                    {{ $task->created_at?->format('d.m.Y H:i:s') }}
+                                </div>
+                                <div class="col-2">
+                                    <h4 class="text-warning">{{ $task->status?->name }}</h4>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     @endforeach
@@ -62,7 +70,7 @@
                     <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('task.store') }}" method="post">
+                    <form action="{{ route('task.assign') }}" method="post">
                         @csrf
                         <input type="hidden" name="project_id" value="{{ $project->id }}">
                         <input type="hidden" name="status" value="{{ \Modules\Task\Enums\TaskStatus::ASSIGNED->value }}">
