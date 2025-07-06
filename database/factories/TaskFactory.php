@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Modules\Task\Models\Task;
 use Modules\User\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Modules\Project\Models\Project;
@@ -11,6 +12,8 @@ use Modules\Project\Models\Project;
  */
 class TaskFactory extends Factory
 {
+
+    protected $model = Task::class;
     /**
      * Define the model's default state.
      *

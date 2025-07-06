@@ -2,6 +2,7 @@
 
 namespace Modules\Task\Models;
 
+use Database\Factories\TaskFactory;
 use Modules\User\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,6 +13,11 @@ class Task extends Model
 {
     /** @use HasFactory<\Database\Factories\TaskFactory> */
     use HasFactory;
+
+    protected static function newFactory()
+    {
+        return TaskFactory::new();
+    }
 
     protected $fillable = [
         'user_id',
