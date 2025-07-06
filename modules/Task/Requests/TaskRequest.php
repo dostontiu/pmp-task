@@ -26,8 +26,9 @@ class TaskRequest extends FormRequest
         return [
             'assigned_user_id' => 'required|exists:users,id',
             'project_id' => 'required|exists:projects,id',
+            'user_id' => 'required',
             'name' => 'required|min:5|max:80',
-            'description' => 'required|min:5|max:500',
+            'description' => 'nullable|max:500',
             'status' => ['required', new Enum(TaskStatus::class)],
         ];
     }

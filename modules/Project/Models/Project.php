@@ -2,6 +2,7 @@
 
 namespace Modules\Project\Models;
 
+use Modules\Task\Models\Task;
 use Modules\User\Models\User;
 use Database\Factories\ProjectFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -21,5 +22,10 @@ class Project extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
     }
 }

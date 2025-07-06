@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Modules\Project\Interfaces\ProjectRepositoryInterface;
 use Modules\Project\Models\Project;
 use Modules\Project\Requests\ProjectRequest;
+use Modules\User\Models\User;
 
 class ProjectController extends Controller
 {
@@ -21,11 +22,12 @@ class ProjectController extends Controller
         return view('project::index', compact('projects'));
     }
 
-    public function view(int $id)
+    public function show(int $id)
     {
-        $model = $this->repository->find($id);
+        $project = $this->repository->find($id);
+        $users = User::get();
 
-        return view('project.view', compact('model'));
+        return view('project::view', compact('project', 'users'));
     }
 
     public function store(ProjectRequest $request)
