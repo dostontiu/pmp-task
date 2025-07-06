@@ -15,9 +15,9 @@ class TaskServiceProvider extends ServiceProvider
 
         $this->loadRoutesFrom(__DIR__ . '/../Routes/web.php');
 
-        $this->loadViewsFrom(__DIR__ . '/../Views', 'project');
+        $this->loadViewsFrom(__DIR__ . '/../Views', 'task');
 
-        $this->mergeConfigFrom(__DIR__ . '/../Config/config.php', 'project');
+        $this->mergeConfigFrom(__DIR__ . '/../Config/config.php', 'task');
     }
 
     /**

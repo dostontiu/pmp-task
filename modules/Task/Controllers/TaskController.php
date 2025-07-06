@@ -5,6 +5,8 @@ namespace Modules\Task\Controllers;
 use Modules\Task\Interfaces\TaskRepositoryInterface;
 use Modules\Task\Requests\TaskRequest;
 use Modules\Task\Requests\TaskUpdateRequest;
+use Illuminate\Support\Facades\Mail;
+use Modules\Task\Mail\TaskMail;
 
 class TaskController extends Controller
 {
@@ -15,7 +17,9 @@ class TaskController extends Controller
 
     public function assign(TaskRequest $request)
     {
-        $this->repository->create($request->validated());
+        $task = $this->repository->create($request->validated());
+
+        Mail::to($task->assignedUser?->email)->queue(new TaskMail($task));
 
         return redirect()->back()->with('success', 'Task added successfully');
     }
