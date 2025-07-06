@@ -51,9 +51,12 @@ class ProjectController extends Controller
 
     public function destroy(int $id)
     {
-        $this->repository->delete($id);
-
-        return redirect()->route('project.index')->with('success', 'Project deleted successfully');
+        try {
+            $this->repository->delete($id);
+            return redirect()->route('project.index')->with('success', 'Project deleted successfully');
+        } catch (\Exception $e) {
+            return redirect()->route('project.index')->with('error', 'You cannot delete this project');
+        }
     }
 
 }
