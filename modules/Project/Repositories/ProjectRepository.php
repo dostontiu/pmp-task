@@ -4,6 +4,7 @@ namespace Modules\Project\Repositories;
 
 use Modules\Project\Interfaces\ProjectRepositoryInterface;
 use Modules\Project\Models\Project;
+use Modules\Project\DTO\ProjectDTO;
 
 class ProjectRepository implements ProjectRepositoryInterface
 {
@@ -12,16 +13,24 @@ class ProjectRepository implements ProjectRepositoryInterface
         return Project::query()->orderByDesc('id')->paginate($perPage);
     }
 
-    public function create(array $data): ?Project
+    public function create(ProjectDTO $projectDTO): ?Project
     {
-        return Project::create($data);
+        return Project::create([
+            'name' => $projectDTO->name,
+            'description' => $projectDTO->description,
+            'user_id' => $projectDTO->user_id,
+        ]);
     }
 
-    public function update(array $data, int $id): int
+    public function update(ProjectDTO $projectDTO, int $id): int
     {
         $model = Project::findOrFail($id);
 
-        return $model->update($data);
+        return $model->update([
+            'name' => $projectDTO->name,
+            'description' => $projectDTO->description,
+            'user_id' => $projectDTO->user_id,
+        ]);
     }
 
     public function delete(int $id): bool

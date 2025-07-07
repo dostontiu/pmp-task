@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Modules\Project\Interfaces\ProjectRepositoryInterface;
 use Modules\Project\Models\Project;
 use Modules\Project\Requests\ProjectRequest;
+use Modules\Project\DTO\ProjectDTO;
 use Modules\User\Models\User;
 
 class ProjectController extends Controller
@@ -32,7 +33,8 @@ class ProjectController extends Controller
 
     public function store(ProjectRequest $request)
     {
-        $model = $this->repository->create($request->validated());
+        $dto = ProjectDTO::fromRequest($request);
+        $this->repository->create($dto);
 
         return redirect()->route('project.index')->with('success', 'Project added successfully');
     }
@@ -44,7 +46,8 @@ class ProjectController extends Controller
 
     public function update(ProjectRequest $request, int $id)
     {
-        $model = $this->repository->update($request->validated(), $id);
+        $dto = ProjectDTO::fromRequest($request);
+        $this->repository->update($dto, $id);
 
         return redirect()->route('project.index')->with('success', 'Project updated successfully');
     }
