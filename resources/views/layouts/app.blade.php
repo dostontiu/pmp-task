@@ -11,12 +11,12 @@
     <link rel="shortcut icon" href="/favicon.ico">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <link href="/assets/vendor/fontawesome/css/fontawesome.min.css" rel="stylesheet">
-    <link href="/assets/vendor/fontawesome/css/solid.min.css" rel="stylesheet">
-    <link href="/assets/vendor/fontawesome/css/brands.min.css" rel="stylesheet">
-    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/assets/css/master.css" rel="stylesheet">
-    <link href="/assets/vendor/flagiconcss/css/flag-icon.min.css" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/fontawesome/css/fontawesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/fontawesome/css/solid.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/fontawesome/css/brands.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/master.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/flagiconcss/css/flag-icon.min.css') }}" rel="stylesheet">
     <script>
         window.Laravel = {!! json_encode([
                 'csrfToken' => csrf_token(),
@@ -101,15 +101,9 @@
         </div>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="{{ asset('assets/vendor/jquery/jquery.min.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-
-<script src="/assets/vendor/jquery/jquery.min.js"></script>
-<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="/assets/vendor/chartsjs/Chart.min.js"></script>
-<script src="/assets/js/dashboard-charts.js"></script>
-<script src="/assets/js/script.js"></script>
+<script src="{{ asset('assets/js/script.js') }}"></script>
 
 @yield('footer_scripts')
 @stack('pageScript')
