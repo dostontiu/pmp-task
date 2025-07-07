@@ -17,7 +17,7 @@ class ProjectController extends Controller
 
     public function index(Request $request)
     {
-        $projects = Project::query()->orderByDesc('id')->paginate(20);
+        $projects = $this->repository->paginate();
 
         return view('project::index', compact('projects'));
     }

@@ -6,7 +6,7 @@ use Modules\Project\Models\Project;
 
 interface ProjectRepositoryInterface
 {
-    public function all(): \Illuminate\Database\Eloquent\Collection;
+    public function paginate();
 
     public function create(array $data): ?Project;
 

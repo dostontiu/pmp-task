@@ -7,9 +7,9 @@ use Modules\Project\Models\Project;
 
 class ProjectRepository implements ProjectRepositoryInterface
 {
-    public function all(): \Illuminate\Database\Eloquent\Collection
+    public function paginate(int $perPage = 20)
     {
-        return Project::all();
+        return Project::query()->orderByDesc('id')->paginate($perPage);
     }
 
     public function create(array $data): ?Project
