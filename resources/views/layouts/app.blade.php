@@ -11,7 +11,12 @@
     <link rel="shortcut icon" href="/favicon.ico">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-
+    <link href="/assets/vendor/fontawesome/css/fontawesome.min.css" rel="stylesheet">
+    <link href="/assets/vendor/fontawesome/css/solid.min.css" rel="stylesheet">
+    <link href="/assets/vendor/fontawesome/css/brands.min.css" rel="stylesheet">
+    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/assets/css/master.css" rel="stylesheet">
+    <link href="/assets/vendor/flagiconcss/css/flag-icon.min.css" rel="stylesheet">
     <script>
         window.Laravel = {!! json_encode([
                 'csrfToken' => csrf_token(),
@@ -23,7 +28,7 @@
 <body>
 <div id="app">
     @auth()
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-white bg-white">
         <a class="navbar-brand" href="{{ route('home') }}">Home</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -39,18 +44,22 @@
                         <a class="nav-link" href="#">Link</a>
                     </li>
                 </ul>
-                <div class="dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {{ auth()->user()?->name }}
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">{{ auth()->user()?->email }}</a>
-                        <div class="dropdown-divider"></div>
-                        <div class="dropdown-item">
-                            <form action="{{ route('logout') }}" method="POST">
-                                @csrf
-                                <button class="btn btn-outline-danger" type="submit">Logout</button>
-                            </form>
+                <div class="nav-item dropdown">
+                    <div class="nav-dropdown">
+                        <a href="#" id="nav2" class="nav-item nav-link dropdown-toggle text-secondary" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user"></i> <span>{{ auth()->user()?->name }}</span> <i style="font-size: .8em;" class="fas fa-caret-down"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end nav-link-menu">
+                            <ul class="nav-list">
+                                <li><a href="" class="dropdown-item"><i class="fas fa-envelope"></i> {{ auth()->user()?->email }}</a></li>
+                                <div class="dropdown-divider"></div>
+                                <li>
+                                    <form action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                                    </form>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -58,8 +67,8 @@
         </div>
     </nav>
     @endauth
-    <main class="py-4">
-        <div class="container">
+        <div class="content">
+            <div class="container">
             @if ($message = \Illuminate\Support\Facades\Session::get('success'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     {!! $message !!}
@@ -89,11 +98,19 @@
             @endif
         </div>
         @yield('content')
-    </main>
+        </div>
+    </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/chartsjs/Chart.min.js"></script>
+<script src="/assets/js/dashboard-charts.js"></script>
+<script src="/assets/js/script.js"></script>
+
 @yield('footer_scripts')
 @stack('pageScript')
 </body>
