@@ -73,7 +73,7 @@
                     <form action="{{ route('task.assign') }}" method="post">
                         @csrf
                         <input type="hidden" name="project_id" value="{{ $project->id }}">
-                        <input type="hidden" name="status" value="{{ \Modules\Task\Enums\TaskStatus::ASSIGNED->value }}">
+                        <input type="hidden" name="status" value="{{ \Modules\Task\Enums\TaskStatus::ASSIGNED }}">
                         <div class="row">
                             <div class="col-md-12">
                                 <label>Name</label>

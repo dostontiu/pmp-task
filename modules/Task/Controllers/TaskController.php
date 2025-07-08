@@ -3,6 +3,8 @@
 namespace Modules\Task\Controllers;
 
 use Illuminate\Support\Facades\Gate;
+use Modules\Task\DTO\TaskAssignDTO;
+use Modules\Task\DTO\TaskStatusDTO;
 use Modules\Task\Enums\TaskStatus;
 use Modules\Task\Models\Task;
 use Modules\Task\Interfaces\TaskRepositoryInterface;
@@ -20,7 +22,8 @@ class TaskController extends Controller
 
     public function assign(TaskRequest $request)
     {
-        $task = $this->repository->create($request->validated());
+        $dto = TaskAssignDTO::fromRequest($request);
+        $task = $this->repository->assign($dto);
 
         Mail::to($task->assignedUser?->email)->queue(new TaskMail($task));
 
@@ -38,7 +41,8 @@ class TaskController extends Controller
                 return redirect()->back()->with('error', 'You don\'t have permission doneTask');
             }
         }
-        $this->repository->status($request->validated(), $task->id);
+        $dto = TaskStatusDTO::fromRequest($request);
+        $this->repository->status($dto, $task->id);
 
         return redirect()->back()->with('success', 'Task status updated successfully');
     }
