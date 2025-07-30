@@ -11,7 +11,7 @@ class TaskAssignDTO
         public int $project_id,
         public int $user_id,
         public string $name,
-        public string $description,
+        public string|null $description,
         public int $status,
     ){}
 
