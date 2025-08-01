@@ -1,4 +1,4 @@
-FROM php:8.2.0-fpm
+FROM php:8.4-fpm
 
 # Install all necessary PHP extensions
 RUN apt-get update && apt-get install -y libbz2-dev libcurl4-openssl-dev libxml2-dev libzip-dev libgd-dev zlib1g-dev libicu-dev pkg-config libpq-dev libssl-dev build-essential
