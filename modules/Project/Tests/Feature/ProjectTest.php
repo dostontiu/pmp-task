@@ -4,6 +4,7 @@ namespace Modules\Project\Tests\Feature;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Modules\Project\Models\Project;
+use Modules\Task\Models\Task;
 use Modules\User\Models\User;
 use Modules\Project\Tests\TestCase;
 
@@ -103,6 +104,20 @@ class ProjectTest extends TestCase
 
         $response->assertRedirect('project');
         $this->assertDatabaseCount('projects', 0);
+    }
+
+    public function test_project_cannot_delete_when_it_assigned_to_task()
+    {
+        $project = Project::factory()->create();
+        Task::factory(5)->create([
+            'project_id' => $project->id
+        ]);
+
+        $response = $this->delete('project/'.$project->id);
+
+        $response->assertRedirect('project');
+        $this->assertDatabaseCount('projects', 1);
+        $this->assertDatabaseCount('tasks', 5);
     }
 
     public function test_it_returns_404_if_project_not_found()
